@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>夢のあとに | 0㎝の美術館</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    background:#ffffff;
+}
+
+.book-room{
+    max-width:1000px;
+    margin:0 auto;
+    padding:40px 20px;
+}
+
+.back-link{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    min-width:220px;
+    min-height:70px;
+
+    text-decoration:none;
+    color:#666;
+
+    border:1px solid #ddd;
+    border-radius:40px;
+
+    background:#fff;
+
+    transition:all 0.3s ease;
+}
+
+.back-link:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+}
+
+.back-link span{
+    display:block;
+}
+
+.back-en{
+    font-size:0.8rem;
+    color:#999;
+    margin-top:4px;
+}
+
+.cover{
+    text-align:center;
+    padding:120px 20px;
+}
+
+.cover h1{
+    font-weight:normal;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.cover p{
+    color:#777;
+}
+
+.open-book{
+    margin-top:60px;
+}
+
+.open-book button{
+    padding:14px 32px;
+    border:1px solid #ddd;
+    background:white;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:all 0.3s ease;
+}
+
+.open-book button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.open-book span{
+    display:block;
+    font-size:0.85rem;
+    margin-top:4px;
+    color:#888;
+}
+
+.book-content{
+    display:none;
+}
+
+.book-view{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    min-height:70vh;
+}
+
+.arrow{
+    border:none;
+    background:none;
+    font-size:3rem;
+    color:#bbb;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.arrow:hover{
+    color:#666;
+}
+
+.arrow:disabled{
+    opacity:0.2;
+    cursor:default;
+}
+
+.book-slide{
+    display:none;
+    text-align:center;
+}
+
+.book-slide.active{
+    display:block;
+}
+
+.book-slide img{
+    width:100%;
+    max-width:520px;
+    height:auto;
+}
+
+.ending{
+    margin-top:30px;
+    color:#666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="book-room">
+
+<a href="index.html" class="back-link">
+<span>← 小さな扉へ戻る</span>
+<span class="back-en">Back to the Small Door</span>
+</a>
+
+<div id="cover" class="cover">
+
+<h1>夢のあとに</h1>
+
+<p>After the Dream</p>
+
+<div class="open-book">
+
+<button onclick="startBook()">
+
+絵本をひらく
+
+<span>Open the Book</span>
+
+</button>
+
+</div>
+
+</div>
+
+<div id="bookContent" class="book-content">
+
+<div class="book-view">
+
+<button id="prev" class="arrow">‹</button>
+
+<div>
+
+<div class="book-slide active">
+<img src="images/01_まっしろな_なかで.png">
+</div>
+
+<div class="book-slide">
+<img src="images/02_ひかりが_ひとつ.png">
+</div>
+
+<div class="book-slide">
+<img src="images/03_ほっとして.png">
+</div>
+
+<div class="book-slide">
+<img src="images/04_はっぱが_ひらり.png">
+</div>
+
+<div class="book-slide">
+<img src="images/05_ゆきが_ふわり.png">
+</div>
+
+<div class="book-slide">
+<img src="images/06_木がのびて.png">
+</div>
+
+<div class="book-slide">
+<img src="images/07_ともだちが_ふえて.png">
+</div>
+
+<div class="book-slide">
+
+<img src="images/08_やさしい景色.png">
+
+<div class="ending">
+
+<p>あれは夢だったの？</p>
+
+<p>Was it a dream?</p>
+
+</div>
+
+</div>
+
+</div>
+
+<button id="next" class="arrow">›</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const slides = document.querySelectorAll('.book-slide');
+
+let current = 0;
+
+function startBook(){
+
+document.getElementById('cover').style.display='none';
+document.getElementById('bookContent').style.display='block';
+
+showSlide(0);
+
+}
+
+function showSlide(index){
+
+slides.forEach(slide=>{
+slide.classList.remove('active');
+});
+
+slides[index].classList.add('active');
+
+document.getElementById('prev').disabled = index===0;
+document.getElementById('next').disabled = index===slides.length-1;
+
+}
+
+document.getElementById('prev').onclick = ()=>{
+
+if(current>0){
+
+current--;
+
+showSlide(current);
+
+}
+
+};
+
+document.getElementById('next').onclick = ()=>{
+
+if(current<slides.length-1){
+
+current++;
+
+showSlide(current);
+
+}
+
+};
+
+</script>
+
+</body>
+</html>

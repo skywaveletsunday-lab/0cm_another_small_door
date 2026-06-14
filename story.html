@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お話の部屋｜0㎝の美術館</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="story-page">
+  <main class="story-room">
+
+    <a href="index.html" class="back-link story-back-link">
+      小さな扉へ戻る
+      <span>Back to the small door</span>
+    </a>
+
+    <header class="story-header">
+      <p class="site-ja">0㎝の美術館</p>
+
+      <h1 class="story-title">お話の部屋</h1>
+      <p class="story-subtitle">Story Room</p>
+
+     <p class="story-message story-book-title">
+  見つけてくれてありがとう<br>
+  <span>Thank You for Finding Me</span>
+</p>
+    </header>
+
+    <section class="storybook" aria-label="絵本のようにページをめくるお話">
+      <article class="story-slide is-active">
+        <p class="story-number">01</p>
+        <img src="images/story01.png" alt="いつもの道を歩く小さな子ども">
+        <h2>はじまり</h2>
+        <p class="story-text">
+  きょうは どこまで<br>
+  いけるかな。<br>
+  <span>How far can I go today?</span>
+</p>
+      </article>
+
+      <article class="story-slide">
+        <p class="story-number">02</p>
+        <img src="images/story02.png" alt="道に迷って立ち止まる子ども">
+        <h2>まよい道</h2>
+        <p class="story-text">
+  さっきまでの みちが、<br>
+  どこかへ いってしまった。<br>
+  <span>The path I knew seemed to disappear.</span>
+</p>
+      </article>
+
+      <article class="story-slide">
+        <p class="story-number">03</p>
+        <img src="images/story03.png" alt="ひとりぼっちだと思って空を見上げる子ども">
+        <h2>ひとりかな</h2>
+        <p class="story-text">
+  ひとりかな、って<br>
+  おもった。<br>
+  <span>I wondered if I was all alone.</span>
+</p>
+      </article>
+
+      <article class="story-slide">
+        <p class="story-number">04</p>
+        <img src="images/story04.png" alt="友だちが子どもに気づく場面">
+        <h2>きづいた子</h2>
+        <p class="story-text">
+  でも、<br>
+  きみに きづいた子が いた。<br>
+  <span>But someone noticed you.</span>
+</p>
+      </article>
+
+      <article class="story-slide">
+        <p class="story-number">05</p>
+        <img src="images/story05.png" alt="太陽が道を照らす場面">
+        <h2>たいようのひかり</h2>
+        <p class="story-text">
+  たいようも そっと、<br>
+  こっちだよって ひかっていた。<br>
+  <span>And the sun softly shone, as if saying, “This way.”</span>
+</p>
+      </article>
+
+      <article class="story-slide">
+        <p class="story-number">06</p>
+        <img src="images/story06.png" alt="友だちと出会えて安心する子ども">
+        <h2>みつけてくれて</h2>
+        <p class="story-text">
+  もう ひとりじゃない。<br>
+  みつけてもらえるって、あたたかい。<br>
+  <span>I’m not alone anymore. Being found feels warm.</span>
+</p>
+      </article>
+    </section>
+
+    <div class="story-controls">
+      <button class="story-button" id="prevButton" type="button">
+        前のページ
+        <span>Previous</span>
+      </button>
+
+      <p class="story-counter" id="storyCounter">1 / 6</p>
+
+      <button class="story-button" id="nextButton" type="button">
+        次のページ
+        <span>Next</span>
+      </button>
+    </div>
+
+  </main>
+
+  <script>
+    const slides = document.querySelectorAll(".story-slide");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+    const storyCounter = document.getElementById("storyCounter");
+
+    let currentPage = 0;
+
+    function showPage(pageNumber) {
+      slides.forEach((slide) => {
+        slide.classList.remove("is-active");
+      });
+
+      slides[pageNumber].classList.add("is-active");
+      storyCounter.textContent = `${pageNumber + 1} / ${slides.length}`;
+
+      prevButton.disabled = pageNumber === 0;
+      nextButton.disabled = pageNumber === slides.length - 1;
+    }
+
+    prevButton.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage = currentPage - 1;
+        showPage(currentPage);
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (currentPage < slides.length - 1) {
+        currentPage = currentPage + 1;
+        showPage(currentPage);
+      }
+    });
+
+    showPage(currentPage);
+  </script>
+</body>
+</html>

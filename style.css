@@ -1,0 +1,680 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #fbfbf8;
+  color: #4f5b4c;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+  overflow-x: hidden;
+}
+
+/* トップページ */
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  position: relative;
+}
+
+.site-ja {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  letter-spacing: 0.12em;
+  margin: 0 0 1.1rem 0;
+  color: #687463;
+}
+
+.door-ja {
+  font-size: clamp(1.9rem, 5vw, 3.7rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin: 0 0 1.2rem 0;
+  color: #404842;
+  line-height: 1.4;
+}
+
+.door-wrap {
+  display: inline-block;
+  position: relative;
+  margin-left: 0.08em;
+}
+
+.door-letter {
+  display: inline-block;
+  color: #5f8f66;
+  transform-origin: center center;
+  animation: doorTurn 6s ease-in-out infinite;
+}
+
+.leaf {
+  position: absolute;
+  width: clamp(24px, 3.2vw, 38px);
+  height: auto;
+  top: -0.55em;
+  right: -0.35em;
+  opacity: 0;
+  transform-origin: center center;
+  animation: leafAppear 6s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(120, 140, 110, 0.15));
+  pointer-events: none;
+}
+
+.door-en {
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+  letter-spacing: 0.08em;
+  margin: 0 0 1.8rem 0;
+  color: #7a8576;
+}
+
+.message-ja,
+.message-en {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  line-height: 2;
+  margin: 0.35rem 0;
+  color: #5d6758;
+}
+
+/* トップページの入口 */
+.room-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2.6rem;
+}
+
+.room-link,
+.back-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.78rem 1.65rem;
+  border: 1px solid rgba(95, 143, 102, 0.35);
+  border-radius: 999px;
+  color: #5f8f66;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.45);
+  transition: transform 0.8s ease, background 0.8s ease, border-color 0.8s ease;
+}
+
+.room-link-en,
+.back-link span {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: #87927f;
+}
+
+.room-link-line {
+  color: #4f5b4c;
+  border-color: rgba(80, 86, 80, 0.28);
+}
+
+.room-link:hover,
+.back-link:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(95, 143, 102, 0.65);
+}
+
+@keyframes leafAppear {
+  0% {
+    opacity: 0;
+    transform: translate(6px, 4px) rotate(-18deg) scale(0.65);
+  }
+
+  28% {
+    opacity: 0;
+    transform: translate(6px, 4px) rotate(-18deg) scale(0.65);
+  }
+
+  40% {
+    opacity: 0.95;
+    transform: translate(0, 0) rotate(-8deg) scale(1);
+  }
+
+  52% {
+    opacity: 1;
+    transform: translate(-4px, -5px) rotate(8deg) scale(1.05);
+  }
+
+  66% {
+    opacity: 0;
+    transform: translate(-12px, -14px) rotate(18deg) scale(0.75);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-12px, -14px) rotate(18deg) scale(0.75);
+  }
+}
+
+@keyframes doorTurn {
+  0% {
+    transform: perspective(500px) rotateY(0deg);
+  }
+
+  34% {
+    transform: perspective(500px) rotateY(0deg);
+  }
+
+  48% {
+    transform: perspective(500px) rotateY(65deg);
+  }
+
+  58% {
+    transform: perspective(500px) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(500px) rotateY(0deg);
+  }
+}
+
+/* 静かな展示室 */
+.gallery-page {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #fbfbf8;
+}
+
+.gallery-room {
+  min-height: 100vh;
+  padding: 2rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 静かな展示室の戻るボタン */
+.gallery-back-link {
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+  color: #2f4058;
+  border-color: rgba(47, 64, 88, 0.28);
+}
+
+.gallery-back-link:hover {
+  border-color: rgba(47, 64, 88, 0.55);
+}
+
+.gallery-header {
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.gallery-title,
+.line-title {
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  margin: 0 0 0.8rem;
+  color: #4a5546;
+}
+
+.gallery-title-layer {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 1.6rem;
+  color: #26384f;
+}
+
+.gallery-title-ja {
+  position: relative;
+  z-index: 2;
+  color: #26384f;
+  letter-spacing: 0.18em;
+}
+
+.gallery-title-en-near {
+  position: static;
+  display: block;
+  margin-top: -0.25rem;
+  font-size: clamp(0.85rem, 1.45vw, 1.05rem);
+  letter-spacing: 0.12em;
+  color: rgba(38, 56, 79, 0.46);
+  white-space: nowrap;
+}
+
+.gallery-subtitle {
+  display: none;
+}
+
+.gallery-message,
+.line-message {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  line-height: 2;
+  color: rgba(47, 64, 88, 0.68);
+  margin: 0;
+}
+
+.gallery-message span,
+.line-message span {
+  font-size: 0.9em;
+  color: rgba(47, 64, 88, 0.5);
+}
+
+/* 静かな展示室：作品がゆっくり運ばれてくる場所 */
+.moving-gallery {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.7rem 0 1.4rem;
+  position: relative;
+}
+
+.moving-gallery::before,
+.moving-gallery::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 16vw;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.moving-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, #fbfbf8, rgba(251, 251, 248, 0));
+}
+
+.moving-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, #fbfbf8, rgba(251, 251, 248, 0));
+}
+
+.gallery-track {
+  display: flex;
+  gap: 3.4rem;
+  width: max-content;
+  animation: galleryDrift 55s linear infinite;
+}
+
+.art-card {
+  width: clamp(240px, 31vw, 430px);
+  flex: 0 0 auto;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(120, 135, 112, 0.16);
+  box-shadow: 0 18px 40px rgba(120, 135, 112, 0.08);
+  overflow: hidden;
+  transition: transform 0.9s ease, box-shadow 0.9s ease;
+}
+
+.art-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 24px 54px rgba(47, 64, 88, 0.13);
+}
+
+.art-card img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  transition: transform 1s ease, filter 1s ease, opacity 1s ease;
+}
+
+.art-card:hover img {
+  transform: scale(1.12);
+  filter: saturate(1.08) contrast(1.03);
+  opacity: 0.96;
+}
+
+.art-card p {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: rgba(47, 64, 88, 0.58);
+}
+
+.back-link {
+  align-self: center;
+  margin-top: 2.2rem;
+}
+
+@keyframes galleryDrift {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 線画の世界 */
+.line-page {
+  min-height: 100vh;
+  background: #fdfdfb;
+}
+
+.line-room {
+  min-height: 100vh;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.line-title {
+  color: #363a37;
+}
+
+.line-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  letter-spacing: 0.08em;
+  color: #6f746e;
+  margin: 0 0 1.6rem;
+}
+
+.line-message {
+  color: #4e5550;
+}
+
+.line-gallery {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.line-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 1.6rem;
+}
+
+.line-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(60, 60, 58, 0.12);
+  padding: 0.9rem;
+  box-shadow: 0 16px 34px rgba(80, 80, 75, 0.06);
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+  overflow: hidden;
+}
+
+.line-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 24px 48px rgba(80, 80, 75, 0.14);
+}
+
+.line-card img {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%);
+  transition: transform 0.9s ease, filter 0.9s ease;
+}
+
+.line-card:hover img {
+  transform: scale(1.12);
+  filter: grayscale(100%) contrast(1.04);
+}
+
+.line-card p {
+  margin: 0.8rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: #6f746e;
+}
+
+/* お話の部屋 */
+.story-page {
+  min-height: 100vh;
+  background: #fbfbf8;
+}
+
+.story-room {
+  min-height: 100vh;
+  padding: 2.2rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story-back-link {
+  margin-top: 0;
+  margin-bottom: 2.2rem;
+  color: #30445f;
+  border-color: rgba(48, 68, 95, 0.28);
+}
+
+.story-back-link:hover {
+  border-color: rgba(48, 68, 95, 0.55);
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 760px;
+}
+
+.story-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.7rem;
+  color: #30445f;
+}
+
+.story-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  letter-spacing: 0.08em;
+  color: rgba(48, 68, 95, 0.62);
+  margin: 0 0 1.4rem;
+}
+
+.story-message {
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+  line-height: 2;
+  color: #536071;
+  margin: 0;
+}
+
+.story-message span {
+  color: rgba(48, 68, 95, 0.55);
+}
+
+.storybook {
+  width: min(760px, 100%);
+  min-height: 420px;
+  position: relative;
+}
+
+.story-slide {
+  display: none;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(48, 68, 95, 0.12);
+  box-shadow: 0 18px 42px rgba(80, 90, 100, 0.08);
+  padding: 1.2rem;
+  text-align: center;
+  animation: pageFade 0.8s ease;
+}
+
+.story-slide.is-active {
+  display: block;
+}
+
+.story-number {
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  color: rgba(48, 68, 95, 0.45);
+  margin: 0 0 0.8rem;
+}
+
+.story-slide img {
+  width: min(100%, 520px);
+  max-height: 260px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 1.2rem;
+}
+
+.story-slide h2 {
+  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #30445f;
+  margin: 0 0 0.8rem;
+}
+
+.story-slide p {
+  font-size: 1rem;
+  line-height: 2;
+  color: #536071;
+  margin: 0;
+}
+
+.story-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.story-button {
+  border: 1px solid rgba(48, 68, 95, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56);
+  color: #30445f;
+  padding: 0.7rem 1.4rem;
+  font-family: inherit;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.7s ease, background 0.7s ease, opacity 0.7s ease;
+}
+
+.story-button span {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(48, 68, 95, 0.55);
+  margin-top: 0.15rem;
+}
+
+.story-button:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.story-button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.story-button:disabled:hover {
+  transform: none;
+}
+
+.story-counter {
+  min-width: 4rem;
+  text-align: center;
+  color: rgba(48, 68, 95, 0.55);
+  letter-spacing: 0.08em;
+}
+
+@keyframes pageFade {
+  0% {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 画面が小さい時 */
+@media (max-width: 760px) {
+  .line-grid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+
+  .gallery-title-en-near {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .room-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .line-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* お話の本文：日本語のそばに英語をそっと置く */
+.story-text {
+  font-size: 1rem;
+  line-height: 2;
+  color: #536071;
+  margin: 0;
+}
+
+.story-text span {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: rgba(48, 68, 95, 0.48);
+}
+/* ---------------------------------
+   戻るボタン
+--------------------------------- */
+
+.back-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    padding: 14px 32px;
+
+    border: 1px solid rgba(80,80,80,0.15);
+    border-radius: 999px;
+
+    text-decoration: none;
+
+    color: #666;
+
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(80,80,80,0.3);
+}
+
+.back-link-ja {
+    font-size: 0.95rem;
+}
+
+.back-link-en {
+    font-size: 0.78rem;
+    color: #9a9a9a;
+    letter-spacing: 0.04em;
+}
