@@ -137,7 +137,7 @@ resetButton.addEventListener("click", () => {
   endingCommonJa.textContent = "見つけてくれてありがとう。ここは、0㎝の美術館です。";
   endingCommonEn.textContent = "Thank you for finding this place. This is the 0cm Museum.";
 
-  document.querySelectorAll(".placed-item, .sky-piece").forEach((item) => {
+  document.querySelectorAll(".game-piece").forEach((item) => {
     item.classList.remove("is-visible");
   });
 
