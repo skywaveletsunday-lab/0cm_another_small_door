@@ -201,17 +201,44 @@ body {
 }
 
 .leaf-piece {
-  left: 20%;
-  bottom: 21%;
+  left: 26%;
+  bottom: 26%;
   width: 44px;
-  height: 25px;
-  border-radius: 80% 20% 80% 20%;
-  background: linear-gradient(135deg, #b5d289, #6fa56d);
-  transform: rotate(-18deg) translateY(12px) scale(0.82);
+  height: 26px;
+  background: linear-gradient(135deg, #9bc88f 0%, #7fb274 55%, #6fa164 100%);
+  border-radius: 0 85% 0 85%;
+  transform: rotate(-28deg);
+  box-shadow: 0 8px 18px rgba(111, 161, 100, 0.18);
+}
+
+.leaf-piece::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 12px;
+  width: 28px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.45);
+  transform: rotate(-18deg);
+  border-radius: 999px;
+}
+
+.leaf-piece::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 6px;
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.22);
+  transform: rotate(28deg);
+  box-shadow:
+    -6px 3px 0 rgba(255, 255, 255, 0.18),
+    6px 3px 0 rgba(255, 255, 255, 0.18);
 }
 
 .leaf-piece.is-visible {
-  transform: rotate(-18deg) translateY(0) scale(1);
+  transform: rotate(-28deg);
 }
 
 .pencil-piece {
