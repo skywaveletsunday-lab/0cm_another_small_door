@@ -279,32 +279,32 @@ body {
   bottom: 34%;
   width: 76px;
   height: 50px;
-  border: 1px solid rgba(120, 135, 112, 0.28);
-  border-radius: 6px;
-  background: #fffdf7;
-  box-shadow: 0 10px 20px rgba(120, 135, 112, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(120, 135, 112, 0.24);
+  border-radius: 7px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(252, 249, 238, 0.98));
+  box-shadow: 0 10px 20px rgba(120, 135, 112, 0.09);
 }
 
 .letter-piece::before,
 .letter-piece::after {
   content: "";
   position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  border-bottom: 1px solid rgba(120, 135, 112, 0.22);
+  left: 50%;
+  top: 50%;
+  width: 56%;
+  height: 1px;
+  background: rgba(120, 135, 112, 0.24);
+  transform-origin: left center;
 }
 
 .letter-piece::before {
-  left: 0;
-  transform: skewY(32deg);
-  transform-origin: left top;
+  transform: rotate(31deg);
 }
 
 .letter-piece::after {
-  right: 0;
-  transform: skewY(-32deg);
-  transform-origin: right top;
+  transform: rotate(149deg);
 }
 
 .cloud-piece {
