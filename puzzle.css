@@ -49,7 +49,24 @@ body {
 }
 
 .puzzle-back-link {
-  padding: 0.78rem 1.45rem;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 0.15rem;
+  padding: 0.5rem 0.92rem;
+  gap: 0.08rem;
+  border-color: rgba(95, 143, 102, 0.22);
+  background: rgba(255, 255, 255, 0.5);
+  color: #60745d;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 20px rgba(120, 135, 112, 0.06);
+}
+
+.puzzle-back-link span {
+  white-space: nowrap;
 }
 
 .puzzle-back-link small,
@@ -284,8 +301,13 @@ body {
     padding: 0.9rem 0.75rem 2.6rem;
   }
 
+  .puzzle-back-link {
+    padding: 0.46rem 0.82rem;
+    font-size: 0.84rem;
+  }
+
   .puzzle-header {
-    padding-top: 1.1rem;
+    padding-top: 0.85rem;
   }
 
   .puzzle-workspace {
