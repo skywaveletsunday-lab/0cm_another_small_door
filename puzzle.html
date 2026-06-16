@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>パズルの部屋 | 0㎝の美術館</title>
+  <link rel="stylesheet" href="puzzle.css?v=20260616d">
+</head>
+
+<body class="puzzle-page">
+  <main class="puzzle-room">
+    <a href="index.html" class="puzzle-back-link">
+      <span>はじまりへ戻る</span>
+      <small>Back to the beginning</small>
+    </a>
+
+    <header class="puzzle-header">
+      <p class="site-name">0㎝の美術館</p>
+      <h1>パズルの部屋</h1>
+      <p class="puzzle-subtitle">Puzzle Room</p>
+      <p class="puzzle-message">
+        小さなかけらを、光のある場所へ。<br>
+        <span>Move each piece back to its quiet place.</span>
+      </p>
+    </header>
+
+    <section class="puzzle-stage" aria-label="12ピースのイラストパズル">
+      <div class="puzzle-workspace" id="puzzleWorkspace">
+        <div class="puzzle-board" id="puzzleBoard">
+          <img
+            class="puzzle-guide"
+            src="images/puzzle-sun-children.png"
+            alt=""
+            aria-hidden="true"
+          >
+          <img
+            class="final-art"
+            id="finalArt"
+            src="images/puzzle-sun-children.png"
+            alt="完成した色鉛筆画"
+            aria-hidden="true"
+          >
+        </div>
+        <div class="puzzle-pieces" id="puzzlePieces"></div>
+      </div>
+      <p class="puzzle-complete-message" id="completeMessage" hidden>
+        見つけてくれてありがとう。<span>Thank you for finding me.</span>
+      </p>
+    </section>
+
+    <div class="puzzle-actions">
+      <button class="puzzle-reset-button" id="resetButton" type="button">
+        <span>もう一度</span>
+        <small>Reset</small>
+      </button>
+    </div>
+  </main>
+
+  <script src="puzzle.js?v=20260616e"></script>
+</body>
+</html>
