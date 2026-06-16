@@ -279,32 +279,32 @@ body {
   bottom: 34%;
   width: 76px;
   height: 50px;
-  overflow: hidden;
-  border: 1px solid rgba(120, 135, 112, 0.24);
-  border-radius: 7px;
+  border: 1px solid rgba(120, 135, 112, 0.28);
+  border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(252, 249, 238, 0.98));
-  box-shadow: 0 10px 20px rgba(120, 135, 112, 0.09);
-}
-
-.letter-piece::before,
-.letter-piece::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 56%;
-  height: 1px;
-  background: rgba(120, 135, 112, 0.24);
-  transform-origin: left center;
+    linear-gradient(155deg, transparent 49%, rgba(120, 135, 112, 0.22) 50%, transparent 51%) left top / 50% 100% no-repeat,
+    linear-gradient(25deg, transparent 49%, rgba(120, 135, 112, 0.22) 50%, transparent 51%) right top / 50% 100% no-repeat,
+    #fffdf7;
+  box-shadow: 0 10px 20px rgba(120, 135, 112, 0.08);
+  overflow: hidden;
 }
 
 .letter-piece::before {
-  transform: rotate(31deg);
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 44%;
+  border-bottom: 1px solid rgba(120, 135, 112, 0.18);
+  background:
+    linear-gradient(25deg, transparent 49%, rgba(120, 135, 112, 0.16) 50%, transparent 51%) left top / 50% 100% no-repeat,
+    linear-gradient(155deg, transparent 49%, rgba(120, 135, 112, 0.16) 50%, transparent 51%) right top / 50% 100% no-repeat;
+  pointer-events: none;
 }
 
 .letter-piece::after {
-  transform: rotate(149deg);
+  content: none;
 }
 
 .cloud-piece {
