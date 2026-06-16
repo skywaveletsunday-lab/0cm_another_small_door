@@ -280,11 +280,8 @@ body {
   width: 76px;
   height: 50px;
   border: 1px solid rgba(120, 135, 112, 0.28);
-  border-radius: 8px;
-  background:
-    linear-gradient(155deg, transparent 49%, rgba(120, 135, 112, 0.22) 50%, transparent 51%) left top / 50% 100% no-repeat,
-    linear-gradient(25deg, transparent 49%, rgba(120, 135, 112, 0.22) 50%, transparent 51%) right top / 50% 100% no-repeat,
-    #fffdf7;
+  border-radius: 10px;
+  background: #fffdf7;
   box-shadow: 0 10px 20px rgba(120, 135, 112, 0.08);
   overflow: hidden;
 }
@@ -292,19 +289,25 @@ body {
 .letter-piece::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 44%;
-  border-bottom: 1px solid rgba(120, 135, 112, 0.18);
-  background:
-    linear-gradient(25deg, transparent 49%, rgba(120, 135, 112, 0.16) 50%, transparent 51%) left top / 50% 100% no-repeat,
-    linear-gradient(155deg, transparent 49%, rgba(120, 135, 112, 0.16) 50%, transparent 51%) right top / 50% 100% no-repeat;
-  pointer-events: none;
+  left: 14px;
+  right: 14px;
+  top: 18px;
+  height: 1px;
+  background: rgba(120, 135, 112, 0.22);
+  box-shadow:
+    0 8px 0 rgba(120, 135, 112, 0.14),
+    0 16px 0 rgba(120, 135, 112, 0.1);
 }
 
 .letter-piece::after {
-  content: none;
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(238, 196, 176, 0.55);
 }
 
 .cloud-piece {
