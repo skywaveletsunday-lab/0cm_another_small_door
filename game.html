@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遊べる部屋 | 0㎝の美術館</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+
+<body class="game-page">
+  <main class="game-room">
+    <a href="index.html" class="game-back-link">
+      <span>はじまりへ戻る</span>
+      <small>Back to the beginning</small>
+    </a>
+
+    <header class="game-header">
+      <p class="site-name">0㎝の美術館</p>
+      <h1>遊べる部屋</h1>
+      <p class="game-subtitle">Little Growing Room</p>
+      <p class="game-message">
+        好きな順番で、そっと置いてください。<br>
+        <span>Place each small thing in the order you choose.</span>
+      </p>
+    </header>
+
+    <section class="game-stage" id="gameStage" aria-live="polite">
+      <div class="world" id="world">
+        <div class="sky-piece cloud-piece" data-item="cloud" aria-hidden="true">
+          <span></span>
+        </div>
+        <div class="sky-piece light-piece" data-item="light" aria-hidden="true"></div>
+        <div class="placed-item leaf-piece" data-item="leaf" aria-hidden="true"></div>
+        <div class="placed-item pencil-piece" data-item="pencil" aria-hidden="true"></div>
+        <div class="placed-item cat-piece" data-item="cat" aria-hidden="true">
+          <span class="cat-ear cat-ear-left"></span>
+          <span class="cat-ear cat-ear-right"></span>
+          <span class="cat-face">・ᴗ・</span>
+        </div>
+        <div class="placed-item letter-piece" data-item="letter" aria-hidden="true"></div>
+        <div class="placed-item window-piece" data-item="window" aria-hidden="true"></div>
+        <div class="placed-item chair-piece" data-item="chair" aria-hidden="true"></div>
+
+        <div class="little-door" id="littleDoor" aria-label="小さな扉">
+          <div class="door-panel"></div>
+          <div class="door-glow"></div>
+        </div>
+      </div>
+
+      <figure class="ending-card" id="endingCard" hidden>
+        <img id="endingImage" src="" alt="">
+        <figcaption>
+          <p id="endingMessage"></p>
+          <span>見つけてくれてありがとう。ここは、0㎝の美術館です。</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="item-panel" aria-label="小さな世界に置くもの">
+      <button class="item-button" type="button" data-item="leaf">
+        <span class="item-mark">葉</span>
+        <span class="item-ja">葉っぱ</span>
+        <span class="item-en">Leaf</span>
+      </button>
+      <button class="item-button" type="button" data-item="pencil">
+        <span class="item-mark">色</span>
+        <span class="item-ja">色鉛筆</span>
+        <span class="item-en">Pencil</span>
+      </button>
+      <button class="item-button" type="button" data-item="light">
+        <span class="item-mark">灯</span>
+        <span class="item-ja">小さな灯</span>
+        <span class="item-en">Light</span>
+      </button>
+      <button class="item-button" type="button" data-item="cat">
+        <span class="item-mark">猫</span>
+        <span class="item-ja">猫</span>
+        <span class="item-en">Cat</span>
+      </button>
+      <button class="item-button" type="button" data-item="letter">
+        <span class="item-mark">手</span>
+        <span class="item-ja">手紙</span>
+        <span class="item-en">Letter</span>
+      </button>
+      <button class="item-button" type="button" data-item="cloud">
+        <span class="item-mark">雲</span>
+        <span class="item-ja">雲</span>
+        <span class="item-en">Cloud</span>
+      </button>
+      <button class="item-button" type="button" data-item="window">
+        <span class="item-mark">窓</span>
+        <span class="item-ja">窓</span>
+        <span class="item-en">Window</span>
+      </button>
+      <button class="item-button" type="button" data-item="chair">
+        <span class="item-mark">椅</span>
+        <span class="item-ja">小さな椅子</span>
+        <span class="item-en">Chair</span>
+      </button>
+    </section>
+
+    <div class="game-actions">
+      <button class="reset-button" id="resetButton" type="button">
+        <span>もう一度</span>
+        <small>Reset</small>
+      </button>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
