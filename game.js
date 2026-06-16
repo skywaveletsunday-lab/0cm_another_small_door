@@ -3,41 +3,52 @@ const gameStage = document.getElementById("gameStage");
 const world = document.getElementById("world");
 const endingCard = document.getElementById("endingCard");
 const endingImage = document.getElementById("endingImage");
-const endingMessage = document.getElementById("endingMessage");
+const endingMessageJa = document.getElementById("endingMessageJa");
+const endingMessageEn = document.getElementById("endingMessageEn");
+const endingCommonJa = document.getElementById("endingCommonJa");
+const endingCommonEn = document.getElementById("endingCommonEn");
 const resetButton = document.getElementById("resetButton");
 const totalItems = buttons.length;
 const endings = {
   leaf: {
     image: "images/game-endings/ending-leaf.png",
-    message: "葉っぱのあとに、小さな庭道がひらきました。"
+    messageJa: "葉っぱのあとに、小さな庭道がひらきました。",
+    messageEn: "After the leaf, a tiny garden path opened."
   },
   pencil: {
     image: "images/game-endings/ending-pencil.png",
-    message: "色をえらぶように、色鉛筆の庭があらわれました。"
+    messageJa: "色をえらぶように、色鉛筆の庭があらわれました。",
+    messageEn: "As if choosing colors, a colored-pencil garden appeared."
   },
   light: {
     image: "images/game-endings/ending-light.png",
-    message: "小さな灯の先に、あたたかな部屋がありました。"
+    messageJa: "小さな灯の先に、あたたかな部屋がありました。",
+    messageEn: "Beyond the small light, there was a warm room."
   },
   cat: {
     image: "images/game-endings/ending-cat.png",
-    message: "猫が先に来たので、静かな居場所がひらきました。"
+    messageJa: "猫が先に来たので、静かな居場所がひらきました。",
+    messageEn: "Because the cat came first, a quiet place opened."
   },
   letter: {
     image: "images/game-endings/ending-letter.png",
-    message: "手紙の向こうに、やさしい返事が待っていました。"
+    messageJa: "手紙の向こうに、やさしい返事が待っていました。",
+    messageEn: "Beyond the letter, a gentle reply was waiting."
   },
   cloud: {
     image: "images/game-endings/ending-cloud.png",
-    message: "雲を追いかけた先に、空の扉がひらきました。"
+    messageJa: "雲を追いかけた先に、空の扉がひらきました。",
+    messageEn: "Beyond the clouds, a door to the sky opened."
   },
   window: {
     image: "images/game-endings/ending-window.png",
-    message: "窓の向こうに、やわらかな光の部屋が見えました。"
+    messageJa: "窓の向こうに、やわらかな光の部屋が見えました。",
+    messageEn: "Beyond the window, a room of soft light appeared."
   },
   chair: {
     image: "images/game-endings/ending-chair.png",
-    message: "小さな椅子の先に、ひと休みできる場所がありました。"
+    messageJa: "小さな椅子の先に、ひと休みできる場所がありました。",
+    messageEn: "Beyond the small chair, there was a place to rest."
   }
 };
 
@@ -76,8 +87,9 @@ function showEnding() {
 
   world.classList.add("is-complete");
   endingImage.src = ending.image;
-  endingImage.alt = `${ending.message} エンディング画像`;
-  endingMessage.textContent = ending.message;
+  endingImage.alt = `${ending.messageJa} エンディング画像`;
+  endingMessageJa.textContent = ending.messageJa;
+  endingMessageEn.textContent = ending.messageEn;
 
   endingTimer = window.setTimeout(() => {
     gameStage.classList.add("is-ended");
@@ -120,7 +132,10 @@ resetButton.addEventListener("click", () => {
   endingCard.classList.remove("is-visible");
   endingImage.removeAttribute("src");
   endingImage.removeAttribute("alt");
-  endingMessage.textContent = "";
+  endingMessageJa.textContent = "";
+  endingMessageEn.textContent = "";
+  endingCommonJa.textContent = "見つけてくれてありがとう。ここは、0㎝の美術館です。";
+  endingCommonEn.textContent = "Thank you for finding this place. This is the 0cm Museum.";
 
   document.querySelectorAll(".placed-item, .sky-piece").forEach((item) => {
     item.classList.remove("is-visible");
