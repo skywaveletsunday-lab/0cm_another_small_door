@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skywaveletsunday-lab.github.io/0cm_another_small_door/sitemap.xml
