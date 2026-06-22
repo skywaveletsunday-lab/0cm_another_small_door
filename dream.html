@@ -139,11 +139,233 @@ body{
     width:100%;
     max-width:520px;
     height:auto;
+    cursor:zoom-in;
+    transition:transform 0.35s ease, filter 0.35s ease;
+}
+
+.book-slide img:hover{
+    transform:translateY(-2px);
+    filter:contrast(1.03);
 }
 
 .ending{
     margin-top:30px;
     color:#666;
+}
+
+.image-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:32px 24px;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(8px);
+    overflow-y:auto;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.image-lightbox.is-open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.image-lightbox-card{
+    width:min(94vw, 900px);
+    margin:0 auto;
+    padding:clamp(14px, 2vw, 24px);
+    border:1px solid rgba(80,80,80,0.1);
+    border-radius:26px;
+    background:rgba(255,255,255,0.76);
+    box-shadow:0 18px 52px rgba(80,80,75,0.14);
+    text-align:center;
+    opacity:0;
+    transform:translateY(14px) scale(0.96);
+    transition:opacity 0.55s ease, transform 0.55s ease;
+}
+
+.image-lightbox.is-open .image-lightbox-card{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.image-lightbox img{
+    width:min(84vw, 780px);
+    max-width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 12px 34px rgba(80,80,75,0.1);
+    cursor:zoom-out;
+}
+
+.image-lightbox-caption{
+    margin:18px auto 0;
+    max-width:760px;
+    color:#555f52;
+}
+
+.image-lightbox-caption p{
+    margin:0;
+}
+
+.lightbox-caption-ja{
+    font-size:clamp(1.22rem, 2.3vw, 1.72rem);
+    line-height:1.8;
+    letter-spacing:0.08em;
+}
+
+.lightbox-caption-en{
+    margin-top:0.45rem;
+    color:#8a9086;
+    font-size:clamp(0.98rem, 1.65vw, 1.18rem);
+    line-height:1.62;
+    letter-spacing:0.04em;
+}
+
+.lightbox-nav{
+    position:fixed;
+    top:50%;
+    z-index:1001;
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:68px;
+    height:68px;
+    border:1px solid rgba(80,80,80,0.14);
+    border-radius:999px;
+    background:rgba(255,255,255,0.72);
+    color:#666;
+    font-family:inherit;
+    font-size:2.4rem;
+    line-height:1;
+    cursor:pointer;
+    transform:translateY(-50%);
+    transition:transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lightbox-nav span{
+    margin-top:-2px;
+    color:#999;
+    font-size:0.64rem;
+    line-height:1;
+}
+
+.lightbox-nav:hover{
+    transform:translateY(-50%) translateY(-2px);
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 8px 22px rgba(80,80,75,0.09);
+}
+
+.lightbox-nav:disabled{
+    opacity:0.24;
+    cursor:default;
+    box-shadow:none;
+}
+
+.lightbox-nav:disabled:hover{
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.72);
+}
+
+.lightbox-nav-prev{
+    left:20px;
+}
+
+.lightbox-nav-next{
+    right:34px;
+}
+
+.image-lightbox-close{
+    position:absolute;
+    top:22px;
+    right:34px;
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-width:62px;
+    min-height:62px;
+    border:1px solid rgba(80,80,80,0.16);
+    border-radius:999px;
+    background:rgba(255,255,255,0.72);
+    color:#666;
+    font-family:inherit;
+    font-size:1.25rem;
+    cursor:pointer;
+    transition:transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-lightbox-close span{
+    margin-top:1px;
+    color:#999;
+    font-size:0.68rem;
+}
+
+.image-lightbox-close:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,0.94);
+    box-shadow:0 8px 22px rgba(80,80,75,0.09);
+}
+
+body.is-lightbox-open{
+    overflow:hidden;
+}
+
+@media (max-width:640px){
+    .image-lightbox{
+        padding:18px 12px;
+    }
+
+    .image-lightbox-card{
+        width:96vw;
+        padding:10px;
+        border-radius:20px;
+    }
+
+    .image-lightbox img{
+        width:100%;
+        height:auto;
+        max-height:none;
+    }
+
+    .image-lightbox-close{
+        top:12px;
+        right:18px;
+        min-width:54px;
+        min-height:54px;
+    }
+
+    .lightbox-nav{
+        top:auto;
+        bottom:18px;
+        width:54px;
+        height:54px;
+        font-size:2rem;
+        transform:none;
+    }
+
+    .lightbox-nav:hover,
+    .lightbox-nav:disabled:hover{
+        transform:none;
+    }
+
+    .lightbox-nav-prev{
+        left:14px;
+    }
+
+    .lightbox-nav-next{
+        right:20px;
+    }
 }
 
 </style>
@@ -239,9 +461,50 @@ body{
 
 </div>
 
+<div id="imageLightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="絵を大きく表示">
+<button id="closeLightbox" class="image-lightbox-close" type="button" aria-label="閉じる">
+×
+<span>Close</span>
+</button>
+<button id="lightboxPrev" class="lightbox-nav lightbox-nav-prev" type="button" aria-label="前のページ">
+‹
+<span>Prev</span>
+</button>
+<figure id="lightboxCard" class="image-lightbox-card">
+<img id="lightboxImage" src="" alt="">
+<figcaption id="lightboxCaption" class="image-lightbox-caption">
+<p id="lightboxCaptionJa" class="lightbox-caption-ja"></p>
+<p id="lightboxCaptionEn" class="lightbox-caption-en"></p>
+</figcaption>
+</figure>
+<button id="lightboxNext" class="lightbox-nav lightbox-nav-next" type="button" aria-label="次のページ">
+›
+<span>Next</span>
+</button>
+</div>
+
 <script>
 
 const slides = document.querySelectorAll('.book-slide');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxCard = document.getElementById('lightboxCard');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaptionJa = document.getElementById('lightboxCaptionJa');
+const lightboxCaptionEn = document.getElementById('lightboxCaptionEn');
+const closeLightboxButton = document.getElementById('closeLightbox');
+const lightboxPrevButton = document.getElementById('lightboxPrev');
+const lightboxNextButton = document.getElementById('lightboxNext');
+
+const lightboxTexts = [
+{ ja:'まっしろな なかで', en:'In the pure white.' },
+{ ja:'ひかりが ひとつ', en:'A single light appeared.' },
+{ ja:'ほっとして', en:'A quiet feeling of relief.' },
+{ ja:'はっぱが ひらり', en:'A leaf fluttered softly.' },
+{ ja:'ゆきが ふわり', en:'Snow drifted gently.' },
+{ ja:'木が のびて', en:'The tree grew upward.' },
+{ ja:'ともだちが ふえて', en:'More friends gathered.' },
+{ ja:'やさしい景色　あれは夢だったの？', en:'A gentle landscape. Was it a dream?' }
+];
 
 let current = 0;
 
@@ -290,6 +553,119 @@ showSlide(current);
 }
 
 };
+
+function updateImageLightbox(index){
+
+const image = slides[index].querySelector('img');
+
+lightboxImage.src = image.currentSrc || image.src;
+lightboxImage.alt = image.alt || '夢のあとにの絵';
+lightboxCaptionJa.textContent = lightboxTexts[index].ja;
+lightboxCaptionEn.textContent = lightboxTexts[index].en;
+lightboxPrevButton.disabled = index===0;
+lightboxNextButton.disabled = index===slides.length-1;
+
+}
+
+function openImageLightbox(index){
+
+current = index;
+showSlide(current);
+updateImageLightbox(current);
+lightbox.classList.add('is-open');
+lightbox.setAttribute('aria-hidden','false');
+document.body.classList.add('is-lightbox-open');
+lightboxNextButton.focus();
+
+}
+
+function moveLightbox(direction){
+
+if(!lightbox.classList.contains('is-open')){
+return;
+}
+
+const nextIndex = current + direction;
+
+if(nextIndex < 0 || nextIndex >= slides.length){
+return;
+}
+
+current = nextIndex;
+showSlide(current);
+updateImageLightbox(current);
+
+}
+
+function closeImageLightbox(){
+
+lightbox.classList.remove('is-open');
+lightbox.setAttribute('aria-hidden','true');
+document.body.classList.remove('is-lightbox-open');
+
+window.setTimeout(()=>{
+if(!lightbox.classList.contains('is-open')){
+lightboxImage.src = '';
+lightboxCaptionJa.textContent = '';
+lightboxCaptionEn.textContent = '';
+}
+}, 450);
+
+}
+
+document.querySelectorAll('.book-slide img').forEach((image, index)=>{
+
+image.setAttribute('role','button');
+image.setAttribute('tabindex','0');
+image.setAttribute('aria-label','絵を大きく見る');
+
+image.addEventListener('click',()=>{
+openImageLightbox(index);
+});
+
+image.addEventListener('keydown',(event)=>{
+if(event.key === 'Enter' || event.key === ' '){
+event.preventDefault();
+openImageLightbox(index);
+}
+});
+
+});
+
+lightbox.addEventListener('click', closeImageLightbox);
+lightboxCard.addEventListener('click',(event)=>{
+event.stopPropagation();
+});
+closeLightboxButton.addEventListener('click', closeImageLightbox);
+lightboxPrevButton.addEventListener('click',(event)=>{
+event.stopPropagation();
+moveLightbox(-1);
+});
+lightboxNextButton.addEventListener('click',(event)=>{
+event.stopPropagation();
+moveLightbox(1);
+});
+
+document.addEventListener('keydown',(event)=>{
+if(!lightbox.classList.contains('is-open')){
+return;
+}
+
+if(event.key === 'Escape'){
+closeImageLightbox();
+}
+
+if(event.key === 'ArrowLeft'){
+event.preventDefault();
+moveLightbox(-1);
+}
+
+if(event.key === 'ArrowRight'){
+event.preventDefault();
+moveLightbox(1);
+}
+
+});
 
 </script>
 

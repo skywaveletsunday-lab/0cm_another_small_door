@@ -316,7 +316,7 @@ body {
 
 .gallery-track {
   display: flex;
-  gap: 3.4rem;
+  gap: 3.8rem;
   width: max-content;
   animation: galleryDrift 55s linear infinite;
 }
@@ -328,24 +328,28 @@ body {
   background: rgba(255, 255, 255, 0.58);
   border: 1px solid rgba(120, 135, 112, 0.16);
   box-shadow: 0 18px 40px rgba(120, 135, 112, 0.08);
-  overflow: hidden;
-  transition: transform 0.9s ease, box-shadow 0.9s ease;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  transition: transform 1.05s ease, box-shadow 1.05s ease;
 }
 
 .art-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 24px 54px rgba(47, 64, 88, 0.13);
+  transform: translateY(-8px) scale(1.065);
+  z-index: 4;
+  box-shadow: 0 28px 62px rgba(47, 64, 88, 0.14);
 }
 
 .art-card img {
   width: 100%;
   display: block;
   border-radius: 2px;
-  transition: transform 1s ease, filter 1s ease, opacity 1s ease;
+  transform-origin: center center;
+  transition: transform 1.1s ease, filter 1.1s ease, opacity 1.1s ease;
 }
 
 .art-card:hover img {
-  transform: scale(1.12);
+  transform: scale(1.08);
   filter: saturate(1.08) contrast(1.03);
   opacity: 0.96;
 }
@@ -417,7 +421,7 @@ body {
 .line-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(180px, 1fr));
-  gap: 1.6rem;
+  gap: 1.9rem;
 }
 
 .line-card {
@@ -425,24 +429,28 @@ body {
   border: 1px solid rgba(60, 60, 58, 0.12);
   padding: 0.9rem;
   box-shadow: 0 16px 34px rgba(80, 80, 75, 0.06);
-  transition: transform 0.8s ease, box-shadow 0.8s ease;
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  transition: transform 1s ease, box-shadow 1s ease;
+  overflow: visible;
 }
 
 .line-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 24px 48px rgba(80, 80, 75, 0.14);
+  transform: translateY(-8px) scale(1.065);
+  z-index: 4;
+  box-shadow: 0 28px 56px rgba(80, 80, 75, 0.15);
 }
 
 .line-card img {
   width: 100%;
   display: block;
   filter: grayscale(100%);
-  transition: transform 0.9s ease, filter 0.9s ease;
+  transform-origin: center center;
+  transition: transform 1.08s ease, filter 1.08s ease;
 }
 
 .line-card:hover img {
-  transform: scale(1.12);
+  transform: scale(1.08);
   filter: grayscale(100%) contrast(1.04);
 }
 
@@ -514,8 +522,8 @@ body {
 }
 
 .storybook {
-  width: min(760px, 100%);
-  min-height: 420px;
+  width: min(860px, 100%);
+  min-height: 510px;
   position: relative;
 }
 
@@ -524,7 +532,7 @@ body {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(48, 68, 95, 0.12);
   box-shadow: 0 18px 42px rgba(80, 90, 100, 0.08);
-  padding: 1.2rem;
+  padding: 1.25rem;
   text-align: center;
   animation: pageFade 0.8s ease;
 }
@@ -533,19 +541,25 @@ body {
   display: block;
 }
 
-.story-number {
+.story-slide .story-number {
   font-size: 0.9rem;
+  line-height: 1.4;
   letter-spacing: 0.16em;
   color: rgba(48, 68, 95, 0.45);
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.65rem;
 }
 
 .story-slide img {
-  width: min(100%, 520px);
-  max-height: 260px;
+  width: min(106%, 760px);
+  max-height: 420px;
   object-fit: contain;
   display: block;
-  margin: 0 auto 1.2rem;
+  position: relative;
+  left: 50%;
+  margin: -0.35rem auto 0.85rem;
+  clip-path: inset(4% 5%);
+  transform: translateX(-50%) scale(1.075);
+  transform-origin: center center;
 }
 
 .story-slide h2 {
@@ -553,12 +567,12 @@ body {
   font-weight: 500;
   letter-spacing: 0.12em;
   color: #30445f;
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.65rem;
 }
 
 .story-slide p {
-  font-size: 1rem;
-  line-height: 2;
+  font-size: 1.06rem;
+  line-height: 2.05;
   color: #536071;
   margin: 0;
 }
@@ -861,18 +875,18 @@ body {
 }
 
 /* お話の本文：日本語のそばに英語をそっと置く */
-.story-text {
-  font-size: 1rem;
-  line-height: 2;
+.story-slide .story-text {
+  font-size: clamp(1.08rem, 1.7vw, 1.17rem);
+  line-height: 2.05;
   color: #536071;
   margin: 0;
 }
 
-.story-text span {
+.story-slide .story-text span {
   display: block;
-  margin-top: 0.45rem;
-  font-size: 0.86rem;
-  line-height: 1.7;
+  margin-top: 0.46rem;
+  font-size: 0.92em;
+  line-height: 1.72;
   letter-spacing: 0.04em;
   color: rgba(48, 68, 95, 0.48);
 }
@@ -909,6 +923,25 @@ body {
   letter-spacing: 0.04em;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .art-card:hover,
+  .line-card:hover {
+    transform: none;
+    z-index: 1;
+  }
+
+  .art-card:hover img {
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+
+  .line-card:hover img {
+    transform: none;
+    filter: grayscale(100%);
+  }
+}
+
 /* 画面が小さい時 */
 @media (max-width: 760px) {
   .hero {
@@ -939,6 +972,31 @@ body {
 
   .gallery-title-en-near {
     white-space: normal;
+  }
+
+  .storybook {
+    min-height: auto;
+  }
+
+  .story-slide {
+    padding: 1rem;
+  }
+
+  .story-slide img {
+    width: min(108%, 680px);
+    max-height: min(390px, 55vh);
+    margin: -0.25rem auto 0.85rem;
+    clip-path: inset(3.5% 4.5%);
+    transform: translateX(-50%) scale(1.055);
+  }
+
+  .story-slide .story-text {
+    font-size: clamp(1.04rem, 4vw, 1.12rem);
+    line-height: 1.95;
+  }
+
+  .story-controls {
+    margin-top: 1.25rem;
   }
 }
 
