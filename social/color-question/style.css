@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(228, 238, 218, 0.7), rgba(228, 238, 218, 0) 18rem),
+    linear-gradient(180deg, #f8f3e9 0%, #f2eee3 100%);
+  color: #4f564a;
+  font-family:
+    "Hiragino Maru Gothic ProN",
+    "Yu Gothic",
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+}
+
+.poster-wrap {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.poster {
+  container-type: inline-size;
+  position: relative;
+  width: min(calc(100vw - 32px), calc((100svh - 32px) * 9 / 16), 540px);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 5.1cqw 5.5cqw 5.8cqw;
+  border: 1px solid rgba(127, 132, 107, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0.98) 0%, rgba(255, 252, 244, 0.98) 48%, rgba(250, 247, 238, 0.98) 100%);
+  box-shadow: 0 24px 70px rgba(114, 112, 92, 0.16);
+}
+
+.poster::before,
+.poster::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid rgba(142, 157, 125, 0.18);
+  border-radius: 999px;
+}
+
+.poster::before {
+  width: 36cqw;
+  height: 13cqw;
+  right: -14cqw;
+  top: 23cqw;
+  transform: rotate(-18deg);
+}
+
+.poster::after {
+  width: 30cqw;
+  height: 10cqw;
+  left: -12cqw;
+  bottom: 24cqw;
+  transform: rotate(16deg);
+}
+
+.pencil-band {
+  position: relative;
+  z-index: 1;
+  height: 20cqw;
+  overflow: hidden;
+  border-radius: 4.2cqw;
+  background: #fffdf8;
+  box-shadow: 0 1.2cqw 3.8cqw rgba(110, 112, 92, 0.11);
+}
+
+.pencil-band img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.question {
+  position: relative;
+  z-index: 1;
+  margin: 5.7cqw 0 0;
+  text-align: center;
+}
+
+.question-ja {
+  margin: 0;
+  color: #4b5548;
+  font-size: clamp(2rem, 7.4cqw, 4.7rem);
+  font-weight: 500;
+  line-height: 1.34;
+  letter-spacing: 0.08em;
+}
+
+.question-en {
+  margin: 2.6cqw 0 0;
+  color: rgba(77, 87, 72, 0.68);
+  font-size: clamp(0.9rem, 3.1cqw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
+
+.art-card {
+  position: relative;
+  z-index: 1;
+  margin: 6.1cqw auto 0;
+  width: 88%;
+  padding: 2.3cqw;
+  border: 1px solid rgba(134, 133, 107, 0.12);
+  border-radius: 5.2cqw;
+  background: rgba(255, 255, 253, 0.94);
+  box-shadow:
+    0 2.1cqw 5.8cqw rgba(104, 102, 82, 0.12),
+    0 0 0 0.8cqw rgba(255, 255, 255, 0.34);
+}
+
+.art-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3.5cqw;
+}
+
+.poster-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 5.2cqw;
+  text-align: center;
+}
+
+.museum-name {
+  margin: 0;
+  color: #424c42;
+  font-size: clamp(1.05rem, 4.3cqw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.site-url {
+  margin: 1.7cqw 0 0;
+  color: rgba(65, 74, 62, 0.8);
+  font-size: clamp(1rem, 3.8cqw, 2.35rem);
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 520px) {
+  .poster-wrap {
+    padding: 10px;
+  }
+
+  .poster {
+    width: min(calc(100vw - 20px), calc((100svh - 20px) * 9 / 16));
+    box-shadow: 0 18px 48px rgba(114, 112, 92, 0.14);
+  }
+}
