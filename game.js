@@ -58,6 +58,16 @@ let placedCount = 0;
 let endingTimer = null;
 let audioContext = null;
 const activeAudioNodes = new Set();
+const scaleNotes = [
+  261.63, // C4
+  293.66, // D4
+  329.63, // E4
+  349.23, // F4
+  392.00, // G4
+  440.00, // A4
+  493.88, // B4
+  523.25  // C5
+];
 
 function getAudioContext() {
   try {
@@ -118,12 +128,11 @@ function playItemSound(step) {
     return;
   }
 
-  const notes = [261.63, 293.66, 329.63, 349.23, 392, 440, 493.88, 523.25];
-  const base = notes[step % notes.length];
+  const base = scaleNotes[Math.min(step, scaleNotes.length - 1)];
   const now = context.currentTime + 0.01;
 
   scheduleTone(context, base, now, 0.18, 0.032, "triangle");
-  scheduleTone(context, base * 1.5, now + 0.08, 0.2, 0.018, "sine");
+  scheduleTone(context, base, now + 0.07, 0.18, 0.016, "sine");
 }
 
 function playEndingMelody() {
@@ -135,19 +144,18 @@ function playEndingMelody() {
 
   const now = context.currentTime + 0.12;
   const melody = [
-    { frequency: 261.63, start: 0, duration: 0.42 },
-    { frequency: 293.66, start: 0.46, duration: 0.48 },
-    { frequency: 329.63, start: 0.98, duration: 0.52 },
-    { frequency: 349.23, start: 1.52, duration: 0.52 },
-    { frequency: 392, start: 2.08, duration: 0.56 },
-    { frequency: 440, start: 2.68, duration: 0.6 },
-    { frequency: 493.88, start: 3.34, duration: 0.62 },
-    { frequency: 523.25, start: 4.02, duration: 0.78 }
+    { frequency: scaleNotes[0], start: 0, duration: 0.42 },
+    { frequency: scaleNotes[1], start: 0.46, duration: 0.48 },
+    { frequency: scaleNotes[2], start: 0.98, duration: 0.52 },
+    { frequency: scaleNotes[3], start: 1.52, duration: 0.52 },
+    { frequency: scaleNotes[4], start: 2.08, duration: 0.56 },
+    { frequency: scaleNotes[5], start: 2.68, duration: 0.6 },
+    { frequency: scaleNotes[6], start: 3.34, duration: 0.62 },
+    { frequency: scaleNotes[7], start: 4.02, duration: 0.78 }
   ];
 
   melody.forEach((note) => {
     scheduleTone(context, note.frequency, now + note.start, note.duration, 0.03, "sine");
-    scheduleTone(context, note.frequency * 2, now + note.start + 0.02, note.duration * 0.8, 0.007, "triangle");
   });
 }
 
