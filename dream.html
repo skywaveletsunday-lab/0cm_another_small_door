@@ -317,6 +317,10 @@ body{
     box-shadow:0 8px 22px rgba(80,80,75,0.09);
 }
 
+.image-lightbox-mobile-close{
+    display:none;
+}
+
 body.is-lightbox-open{
     overflow:hidden;
 }
@@ -343,6 +347,36 @@ body.is-lightbox-open{
         right:calc(env(safe-area-inset-right, 0px) + 22px);
         min-width:54px;
         min-height:54px;
+    }
+
+    .image-lightbox-mobile-close{
+        position:fixed;
+        left:50%;
+        bottom:calc(env(safe-area-inset-bottom, 0px) + 86px);
+        z-index:1002;
+        display:inline-flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        min-width:132px;
+        min-height:58px;
+        padding:0.65rem 1.3rem;
+        border:1px solid rgba(80,80,80,0.16);
+        border-radius:999px;
+        background:rgba(255,255,255,0.92);
+        color:#666;
+        font-family:inherit;
+        font-size:0.95rem;
+        letter-spacing:0.06em;
+        box-shadow:0 10px 26px rgba(80,80,75,0.12);
+        transform:translateX(-50%);
+    }
+
+    .image-lightbox-mobile-close span{
+        margin-top:0.12rem;
+        color:#999;
+        font-size:0.74rem;
+        letter-spacing:0.04em;
     }
 
     .lightbox-nav{
@@ -481,6 +515,10 @@ body.is-lightbox-open{
 ›
 <span>Next</span>
 </button>
+<button id="mobileCloseLightbox" class="image-lightbox-mobile-close" type="button" aria-label="閉じる">
+閉じる
+<span>Close</span>
+</button>
 </div>
 
 <script>
@@ -492,6 +530,7 @@ const lightboxImage = document.getElementById('lightboxImage');
 const lightboxCaptionJa = document.getElementById('lightboxCaptionJa');
 const lightboxCaptionEn = document.getElementById('lightboxCaptionEn');
 const closeLightboxButton = document.getElementById('closeLightbox');
+const mobileCloseLightboxButton = document.getElementById('mobileCloseLightbox');
 const lightboxPrevButton = document.getElementById('lightboxPrev');
 const lightboxNextButton = document.getElementById('lightboxNext');
 
@@ -636,7 +675,9 @@ lightbox.addEventListener('click', closeImageLightbox);
 lightboxCard.addEventListener('click',(event)=>{
 event.stopPropagation();
 });
+lightboxImage.addEventListener('click', closeImageLightbox);
 closeLightboxButton.addEventListener('click', closeImageLightbox);
+mobileCloseLightboxButton.addEventListener('click', closeImageLightbox);
 lightboxPrevButton.addEventListener('click',(event)=>{
 event.stopPropagation();
 moveLightbox(-1);
