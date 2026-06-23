@@ -56,6 +56,111 @@ let selectedOrder = [];
 let firstChoice = "";
 let placedCount = 0;
 let endingTimer = null;
+let audioContext = null;
+const activeAudioNodes = new Set();
+
+function getAudioContext() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) {
+      return null;
+    }
+
+    if (!audioContext) {
+      audioContext = new AudioContextClass();
+    }
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume().catch(() => {});
+    }
+
+    return audioContext;
+  } catch (error) {
+    return null;
+  }
+}
+
+function scheduleTone(context, frequency, startTime, duration, volume, type = "sine") {
+  try {
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const endTime = startTime + duration;
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, startTime);
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.04);
+    gain.gain.setValueAtTime(volume * 0.7, startTime + duration * 0.55);
+    gain.gain.exponentialRampToValueAtTime(0.0001, endTime);
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+
+    activeAudioNodes.add(oscillator);
+    oscillator.addEventListener("ended", () => {
+      activeAudioNodes.delete(oscillator);
+      oscillator.disconnect();
+      gain.disconnect();
+    });
+
+    oscillator.start(startTime);
+    oscillator.stop(endTime + 0.02);
+  } catch (error) {
+    // Audio is decorative; the game should continue even if sound is unavailable.
+  }
+}
+
+function playItemSound(step) {
+  const context = getAudioContext();
+
+  if (!context) {
+    return;
+  }
+
+  const notes = [392, 440, 493.88, 523.25, 587.33, 659.25];
+  const base = notes[step % notes.length];
+  const now = context.currentTime + 0.01;
+
+  scheduleTone(context, base, now, 0.18, 0.032, "triangle");
+  scheduleTone(context, base * 1.5, now + 0.08, 0.2, 0.018, "sine");
+}
+
+function playEndingMelody() {
+  const context = getAudioContext();
+
+  if (!context) {
+    return;
+  }
+
+  const now = context.currentTime + 0.12;
+  const melody = [
+    { frequency: 392, start: 0, duration: 0.42 },
+    { frequency: 523.25, start: 0.46, duration: 0.48 },
+    { frequency: 659.25, start: 0.98, duration: 0.58 },
+    { frequency: 587.33, start: 1.62, duration: 0.44 },
+    { frequency: 659.25, start: 2.1, duration: 0.58 },
+    { frequency: 783.99, start: 2.72, duration: 0.64 },
+    { frequency: 659.25, start: 3.42, duration: 0.9 }
+  ];
+
+  melody.forEach((note) => {
+    scheduleTone(context, note.frequency, now + note.start, note.duration, 0.03, "sine");
+    scheduleTone(context, note.frequency * 2, now + note.start + 0.02, note.duration * 0.8, 0.007, "triangle");
+  });
+}
+
+function stopActiveAudio() {
+  activeAudioNodes.forEach((node) => {
+    try {
+      node.stop();
+    } catch (error) {
+      // The node may already be stopped or not yet started.
+    }
+  });
+
+  activeAudioNodes.clear();
+}
 
 function placeItem(itemName) {
   const item = document.querySelector(`[data-item="${itemName}"]:not(button)`);
@@ -86,6 +191,7 @@ function showEnding() {
   }
 
   world.classList.add("is-complete");
+  playEndingMelody();
   endingImage.src = ending.image;
   endingImage.alt = `${ending.messageJa} エンディング画像`;
   endingMessageJa.textContent = ending.messageJa;
@@ -112,11 +218,14 @@ buttons.forEach((button) => {
 
     button.disabled = true;
     button.setAttribute("aria-pressed", "true");
+    playItemSound(placedCount);
     placeItem(button.dataset.item);
   });
 });
 
 resetButton.addEventListener("click", () => {
+  stopActiveAudio();
+
   if (endingTimer) {
     window.clearTimeout(endingTimer);
     endingTimer = null;
