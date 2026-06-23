@@ -118,7 +118,7 @@ function playItemSound(step) {
     return;
   }
 
-  const notes = [392, 440, 493.88, 523.25, 587.33, 659.25];
+  const notes = [261.63, 293.66, 329.63, 349.23, 392, 440, 493.88, 523.25];
   const base = notes[step % notes.length];
   const now = context.currentTime + 0.01;
 
@@ -135,13 +135,14 @@ function playEndingMelody() {
 
   const now = context.currentTime + 0.12;
   const melody = [
-    { frequency: 392, start: 0, duration: 0.42 },
-    { frequency: 523.25, start: 0.46, duration: 0.48 },
-    { frequency: 659.25, start: 0.98, duration: 0.58 },
-    { frequency: 587.33, start: 1.62, duration: 0.44 },
-    { frequency: 659.25, start: 2.1, duration: 0.58 },
-    { frequency: 783.99, start: 2.72, duration: 0.64 },
-    { frequency: 659.25, start: 3.42, duration: 0.9 }
+    { frequency: 261.63, start: 0, duration: 0.42 },
+    { frequency: 293.66, start: 0.46, duration: 0.48 },
+    { frequency: 329.63, start: 0.98, duration: 0.52 },
+    { frequency: 349.23, start: 1.52, duration: 0.52 },
+    { frequency: 392, start: 2.08, duration: 0.56 },
+    { frequency: 440, start: 2.68, duration: 0.6 },
+    { frequency: 493.88, start: 3.34, duration: 0.62 },
+    { frequency: 523.25, start: 4.02, duration: 0.78 }
   ];
 
   melody.forEach((note) => {
